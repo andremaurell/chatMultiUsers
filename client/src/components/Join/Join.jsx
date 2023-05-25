@@ -2,6 +2,7 @@ import React, {useRef} from 'react'
 import io from 'socket.io-client'
 import style from './Join.module.css'
 import {Input, Button} from '@mui/material'
+import imageLogo from '../../assets/et_chat.jpg'
 
 export default function Join({setChatVisibility, setSocket}) {
 
@@ -17,10 +18,16 @@ export default function Join({setChatVisibility, setSocket}) {
   }
 
   return (
+    <div>
+    <div className={style['fotoAuthor']}>
+    <img src={imageLogo} alt="André Maurell"/>
+    <h2>Creator: André Maurell</h2>
+  </div>
     <div className={style['join-container']}>
-      <h2>Chat em tempo real</h2>
+      <h2 className={style['title']}>Chat em tempo real</h2>
       <Input inputRef={usernameRef} placeholder='Nome de usuário' />
       <Button sx={{mt:2}} onClick={()=>handleSubmit()} variant="contained">Entrar</Button>
+    </div>
     </div>
   )
 }

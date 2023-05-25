@@ -5,6 +5,28 @@
   -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
 	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
 }
+
+.chat-container .barLogo {
+  width: 100%;
+  height: 50px;
+  background-image: linear-gradient(to right, #190aee, #3e0f96, #190aee);
+  z-index: 0;
+}
+
+.fotoAuthor{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.fotoAuthor img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border:2px #00f2fe solid; 
+}
+
 .chat-body{
   padding: 0 10px;
   height: 550px;
@@ -31,10 +53,11 @@
 
 .chat-footer{
   width: 100%;
+  position: relative;
   padding: 0 10px;
   box-sizing: border-box;
   display:flex;
   align-items: center;
-  bottom: 0;
+  bottom: 50px;
   height: 50px;
 }
