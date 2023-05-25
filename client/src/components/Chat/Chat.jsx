@@ -4,7 +4,6 @@ import SendIcon from '@mui/icons-material/Send';
 import MicIcon from '@mui/icons-material/Mic';
 import StopIcon from '@mui/icons-material/Stop';
 import style from './Chat.module.css'
-import ReactMic from 'react-mic';
 import imageLogo from '../../assets/et_chat.jpg'
 
 export default function Chat({socket}) {
@@ -110,11 +109,6 @@ export default function Chat({socket}) {
 
       <SendIcon sx={{ m: 1, cursor: 'pointer' }} onClick={handleSubmit} color="primary" />
         </div>
-        {/* <ReactMic
-        record={isRecording}
-        className="sound-wave"
-        onStop={onStopRecording}
-      /> */}
       </div>
       </div>
   )
