@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Chat Multi Users application",
   "scripts": {
-    "dev:client": "cd client && vite",
-    "build:client": "cd client && vite build",
-    "preview:client": "cd client && vite preview",
+    "dev:client": "cd client && npm run dev",
+    "build:client": "cd client && npm run build",
+    "preview:client": "cd client && npm run preview",
     "dev:server": "cd server && nodemon index.js",
-    "heroku-postbuild": "cd client && npm install && npm run dev:client"
+    "heroku-postbuild": "cd client && npm install && npm run dev"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
