@@ -1,9 +1,9 @@
 const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus().length;
-const app = require('express')()
 
-if (cluster.isMaster) {
+
+if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`);
 
   // Crie um worker para cada CPU disponível
@@ -24,8 +24,16 @@ if (cluster.isMaster) {
 
 } else {
 
+const app = require('express')()
 const server = http.createServer(app)
-const io = require('socket.io')(server, {cors: {origin: 'http://localhost:5173'}})
+const io = require('socket.io')(server, {cors: {origin: 'http://192.168.1.12'}})
+
+
+//const redisAdapter = require('socket.io-redis');
+
+// const redisURL = 'redis://sua-url-redis-aqui';
+// const adapter = redisAdapter(redisURL);
+// io.adapter(adapter);
 
 const PORT = 3001
 
