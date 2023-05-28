@@ -1,17 +1,19 @@
 import React, {useRef, useState, useEffect} from 'react'
 import {Input} from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
-import MicIcon from '@mui/icons-material/Mic';
-import StopIcon from '@mui/icons-material/Stop';
 import style from './Chat.module.css'
 import imageLogo from '../../assets/et_chat.jpg'
+import fundoAmarelo from '../../assets/fundoChat_amarelo.png';
+import fundoAzul from '../../assets/fundoChat_azul.png';
+import fundoRosa from '../../assets/fundoChat_rosa.png';
+import fundoNormal from '../../assets/fundoChat.png'
 
 export default function Chat({socket}) {
 
   const bottomRef = useRef()
   const messageRef = useRef()
   const [messageList, setMessageList] = useState([])
-  const [isRecording, setIsRecording] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState('');
   const [recordedAudio, setRecordedAudio] = useState(null);
 
   useEffect(()=>{
@@ -33,21 +35,14 @@ export default function Chat({socket}) {
   }, [messageList])
 
   const handleSubmit = () => {
-    if (isRecording) {
-      if (recordedAudio){
-        socket.emit ('audio', recordedAudio.blob);
-        setMessageList([...messageList, newMessage]);
-        setRecordedAudio(null);
-    }
-    setRecordedAudio(false);
-  } else {
-  const message = messageRef.current.value
+    const message = messageRef.current.value
     if(!message.trim()) return
+
     socket.emit('message', message)
     clearInput()
     focusInput()
   }
-  }
+  
 
 
   const clearInput = () => {
@@ -67,21 +62,22 @@ export default function Chat({socket}) {
     bottomRef.current.scrollIntoView({behavior: 'smooth'})
   }
 
-  const startRecording = () => {
-    setIsRecording(true);
-  };
-
-  const stopRecording = () => {
-    setIsRecording(false);
-  };
-
-  const handleSendAudio = () => {
-    // Manipule o arquivo de áudio gravado aqui
+  const handleBackground = (image) => {
+    setBackgroundImage(`url(${image})`)
   }
 
   return (
     <div>
-      <div className={style['chat-container']}>
+      <div className={style["select_background"]}>
+        <h2>Selecione o tema de fundo do chat:</h2>     
+        <div className={style["chat-background"]} >
+       <button onClick={() => handleBackground(fundoNormal)}>Padrão</button>
+       <button onClick={() => handleBackground(fundoAmarelo)}>Amarelo</button>
+       <button onClick={() => handleBackground(fundoAzul)}>Azul</button>
+       <button onClick={() => handleBackground(fundoRosa)}>Rosa</button>
+       </div>
+      </div>
+      <div className={style['chat-container']} style={{ backgroundImage: backgroundImage }}>
         <div className={style['barLogo']}>
         <div className={style['fotoAuthor']}>
         <img src={imageLogo} alt="André Maurell"/>
@@ -89,6 +85,7 @@ export default function Chat({socket}) {
           <span></span>
         </div>
         <div className={style["chat-body"]}>
+
         {
           messageList.map((message,index) => (
             <div className={`${style["message-container"]} ${message.authorId === socket.id && style["message-mine"]}`} key={index}>
@@ -101,13 +98,7 @@ export default function Chat({socket}) {
         </div>
         <div className={style["chat-footer"]}>
           <Input inputRef={messageRef} placeholder='Mensagem' onKeyDown={(e)=>getEnterKey(e)} fullWidth />
-          {isRecording ? (
-        <StopIcon sx={{ m: 1, cursor: 'pointer' }} onClick={stopRecording} color="primary" />
-      ) : (
-        <MicIcon sx={{ m: 1, cursor: 'pointer' }} onClick={startRecording} color="primary" />
-      )}
-
-      <SendIcon sx={{ m: 1, cursor: 'pointer' }} onClick={handleSubmit} color="primary" />
+          <SendIcon sx={{ m: 1, cursor: 'pointer' }} onClick={handleSubmit} color="primary" />
         </div>
       </div>
       </div>

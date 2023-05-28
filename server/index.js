@@ -1,5 +1,4 @@
 const cluster = require('cluster');
-const http = require('http');
 const numCPUs = require('os').cpus().length;
 
 
@@ -25,9 +24,9 @@ if (cluster.isPrimary) {
 } else {
 
 const app = require('express')()
-const server = http.createServer(app)
-const io = require('socket.io')(server, {cors: {origin: 'http://192.168.1.12'}})
-
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, {cors: {origin: 'http://192.168.1.12:5173'}})
+const PORT = 3001
 
 //const redisAdapter = require('socket.io-redis');
 
@@ -35,7 +34,7 @@ const io = require('socket.io')(server, {cors: {origin: 'http://192.168.1.12'}})
 // const adapter = redisAdapter(redisURL);
 // io.adapter(adapter);
 
-const PORT = 3001
+
 
 io.on('connection', socket => {
   console.log('Usuário conectado!', socket.id);
@@ -55,14 +54,6 @@ io.on('connection', socket => {
       author: socket.data.username
     })
     console.log('aiai')
-  })
-  socket.on('audio', audio => {
-    io.emit('receive_message', {
-      audio,
-      authorId: socket.id,
-      author: socket.data.username
-    })
-    console.log('oi')
   })
 })
 

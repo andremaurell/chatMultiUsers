@@ -1,9 +1,13 @@
 .chat-container{
   height: 600px;
   width: 400px;
-  background-color: #fff;
-  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  background-image: url('../../assets/fundoChat.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3); 
 	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 10%;
 }
 
 .chat-container .barLogo {
@@ -52,6 +56,7 @@
 }
 
 .chat-footer{
+  background-color: #fff;
   width: 100%;
   position: relative;
   padding: 0 10px;
@@ -60,4 +65,47 @@
   align-items: center;
   bottom: 50px;
   height: 50px;
+}
+
+.select_background {
+  position: relative;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  left: 120%;
+  padding: 0;
+  border-radius: 10% 10% 0 0;
+  -webkit-box-shadow: 5px 5px 17px 1px rgba(0, 0, 0, 0.5);
+}
+
+.select_background .chat-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.select_background .chat-background button{
+  color: #000;
+  font-weight: 700;
+  border-radius: 0;
+}
+
+.select_background .chat-background button:first-child  {
+  margin-bottom: 10px;
+  background-image: url('../../assets/fundoChat.png');
+}
+.select_background .chat-background button:nth-child(2)  {
+  margin-bottom: 10px;
+  background-image: url('../../assets/fundoChat_amarelo.png');
+}
+.select_background .chat-background button:nth-child(3)  {
+  margin-bottom: 10px;
+  background-image: url('../../assets/fundoChat_azul.png');
+}
+.select_background .chat-background button:nth-child(4)  {
+  background-image: url('../../assets/fundoChat_rosa.png');
 }
