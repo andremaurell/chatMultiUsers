@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Chat Multi Users application",
   "scripts": {
-    "start": "cd client && npm run start && cd .. && cd server && node index.js",
+    "start": "cd client && npm run dev && cd .. && cd server && node index.js",
     "build:client": "cd client && npm run build",
     "preview:client": "cd client && npm run preview"
   },
