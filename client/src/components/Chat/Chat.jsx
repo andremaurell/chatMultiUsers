@@ -14,18 +14,11 @@ export default function Chat({socket}) {
   const messageRef = useRef()
   const [messageList, setMessageList] = useState([])
   const [backgroundImage, setBackgroundImage] = useState('');
-  const [recordedAudio, setRecordedAudio] = useState(null);
 
   useEffect(()=>{
     socket.on('receive_message', data => {
       setMessageList((current) => [...current, data])
     })
-    if(recordedAudio){
-    socket.on('receive_message', data => {
-      setMessageList((current) => [...current, data])
-      console.log("oi")
-    })
-  }
 
     return () => socket.off('receive_message')
   }, [socket])
@@ -34,11 +27,11 @@ export default function Chat({socket}) {
     scrollDown()
   }, [messageList])
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const message = messageRef.current.value
     if(!message.trim()) return
 
-    socket.emit('message', message)
+    await socket.emit('message', message)
     clearInput()
     focusInput()
   }
