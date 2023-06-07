@@ -27,7 +27,7 @@
 const app = require('express')()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server, {cors: {origin: '*'}})
-const PORT = process.env.PORT || 3001
+const port = process.env.PORT || 3001
 
 io.on('connection', socket => {
   console.log('Usuário conectado!', socket.id);
@@ -51,6 +51,6 @@ io.on('connection', socket => {
     console.log('aiai')
   })
 }) 
-server.listen(PORT, () => 
-console.log(`Worker ${process.pid} is running on port ${PORT}`))
+server.listen(port, () => 
+console.log(`Worker ${process.pid} is running on port ${port}`))
 //}
