@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Chat Multi Users application",
   "scripts": {
-    "start": "cd client && npm run dev && cd .. && cd server && node index.js",
-    "build:client": "cd client && npm run build",
-    "preview:client": "cd client && npm run preview"
+    "start": "cd client && npm run dev && cd .. && cd server && nodemon index.js",
+    "build": "cd client && npm run build",
+    "preview": "cd client && npm run preview"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
