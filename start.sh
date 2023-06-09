@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd server
-node index.js &
+nodemon index.js &
 
 cd ../client
 npm run dev
