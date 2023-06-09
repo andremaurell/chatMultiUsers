@@ -1,5 +1,9 @@
 services:
   - name:chatMultiUsers
     type: web
-    buildCommand: npm install
-    startCommand: cd client && npm run dev && cd .. && cd server && node index.js
+    buildCommand: |
+      cd client && npm install
+      cd server && npm install
+    startCommand: |
+      cd client && npm run dev 
+      cd ../server && node index.js
