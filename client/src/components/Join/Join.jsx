@@ -11,7 +11,8 @@ export default function Join({setChatVisibility, setSocket}) {
   const handleSubmit = async () => {
     const username = usernameRef.current.value
     if(!username.trim()) return
-    const socket = await io.connect(window.location.origin)
+    const socket = await io.connect('https://chatmultiusers.onrender.com:3001')
+    console.log(socket)
     socket.emit('set_username', username)
     setSocket(socket)
     setChatVisibility(true)

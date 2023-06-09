@@ -1,7 +1,7 @@
 const app = require('express')()
 const server = require('http').createServer(app)
-const io = require('socket.io')(server, {cors: {origin: '*'}})
-const PORT = process.env.PORT
+const io = require('socket.io')(server, {cors: {origin: 'https://chatmultiusers.onrender.com'}})
+const PORT = 3001
 
 io.on('connection', socket => {
   console.log('Usuário conectado!', socket.id);
